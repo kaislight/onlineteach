@@ -1,0 +1,52 @@
+{#login/templates/login/index.html#}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+<head>
+    
+</head>
+{% block content %}
+      <!-- Hero -->
+  <section class="et-hero-tabs">
+    <h1>物理仿真实验<br>Physical Simulation Experiment</h1>
+    <h3>让物理走进生活<br>Let physical come into life</h3>
+    <div class="et-hero-tabs-container">
+      <a class="et-hero-tab" href="#tab-es6">力学<br>Dynamics</a>
+      <a class="et-hero-tab" href="#tab-flexbox">热学<br>Thermotics</a>
+      <a class="et-hero-tab" href="#tab-react">光学<br>Optics</a>
+      <a class="et-hero-tab" href="#tab-angular">电磁学<br>Electromagnetics</a>
+      <a class="et-hero-tab" href="#tab-other">其他<br>Other</a>
+      <span class="et-hero-tab-slider"></span>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="et-main">
+    <section class="et-slide" id="tab-es6">
+      <h1>力学</h1>
+      <h3>Dynamics</h3>
+      <button class="fill"><B>简谐振动曲线</B></button>
+    </section>
+    <section class="et-slide" id="tab-flexbox">
+      <h1>热学</h1>
+      <h3>Thermotics</h3>
+    </section>
+    <section class="et-slide" id="tab-react">
+      <h1>光学</h1>
+      <h3>Optics</h3>
+    </section>
+    <section class="et-slide" id="tab-angular">
+      <h1>电磁学</h1>
+      <h3>Electromagnetics</h3>
+    </section>
+    <section class="et-slide" id="tab-other">
+      <h1>其他</h1>
+      <h3>something about other</h3>
+    </section>
+  </main>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
