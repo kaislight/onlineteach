@@ -1,0 +1,31 @@
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/d1.css' %}">
+{% endblock %}
+<head>
+    
+</head>
+{% block content %}
+      <!-- Hero -->
+    <div class="login">
+        <form action = "" method = "post">
+            {% csrf_token %}
+            
+            <div class="alert alert-warning">简谐振动x=Acos(ωt+φ)(0&#60t&#60T(周期))的振动曲线及对应的v-t曲线。</div>
+            {% if message %}
+                <div class="alert alert-warning">{{ message }}</div>
+            {% endif %}
+            <input type="text" placeholder="a" name="a"><br>
+            <input type="text" placeholder="w" name="w"><br>
+            <input type="text" placeholder="f" name="f"><br>
+            <input type="submit" value="绘制图片">
+            <input type="button" value="返回主页" onclick="window.location.href='/index/'">
+        </form>
+    </div>
+    <div class="image">
+        <img src="{% static p %}" alt="some_text" style="margin:0;"></img>
+    </div>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
