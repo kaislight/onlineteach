@@ -1,52 +1,96 @@
-{#login/templates/login/index.html#}
+{% load static %}
 
-{% block css %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-{% endblock %}
 <head>
-    
+  <link href='https://fonts.googleapis.com/css?family=Montserrat|Cardo' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href = "{% static "css/index.css" %}" type="text/css">
+  <script type="text/javascript" src="{% static "js/jquery-3.6.0.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/index.js" %}"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js"></script>
+  <script type="text/javascript">
+    function getplace() {
+        var p1 = parseInt(thumb.getBoundingClientRect().left - slider.getBoundingClientRect().left);
+        var p2 = parseInt(thumb2.getBoundingClientRect().left - slider.getBoundingClientRect().left);
+        var p3 = parseInt(thumb3.getBoundingClientRect().left - slider2.getBoundingClientRect().left) / 100;
+        var p4 = parseInt(thumb4.getBoundingClientRect().left - slider3.getBoundingClientRect().left) / 2 + 380;
+        document.getElementById("place").innerHTML = "光源位置：" + p1 + "cm   " + "双缝位置：" + p2 + "cm   " + "光屏位置：900cm";//在div中写入时间
+        document.getElementById("place2").innerHTML = "双缝宽度：" + p3 + "cm   ";
+        document.getElementById("place3").innerHTML = "光波长：" + p4 + "nm   ";
+        setTimeout('getplace()', 50);//每隔500ms执行一次getTime()
+    }
+    </script>
+    <script type="text/javascript" src="{% static "js/echarts.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/reset.js" %}"></script>
 </head>
-{% block content %}
-      <!-- Hero -->
-  <section class="et-hero-tabs">
-    <h1>物理仿真实验<br>Physical Simulation Experiment</h1>
-    <h3>让物理走进生活<br>Let physical come into life</h3>
-    <div class="et-hero-tabs-container">
-      <a class="et-hero-tab" href="#tab-es6">力学<br>Dynamics</a>
-      <a class="et-hero-tab" href="#tab-flexbox">热学<br>Thermotics</a>
-      <a class="et-hero-tab" href="#tab-react">光学<br>Optics</a>
-      <a class="et-hero-tab" href="#tab-angular">电磁学<br>Electromagnetics</a>
-      <a class="et-hero-tab" href="#tab-other">其他<br>Other</a>
-      <span class="et-hero-tab-slider"></span>
-    </div>
-  </section>
-
-  <!-- Main -->
-  <main class="et-main">
-    <section class="et-slide" id="tab-es6">
-      <h1>力学</h1>
-      <h3>Dynamics</h3>
-      <button class="fill" onclick="window.location.href='/d1/'"><B>简谐振动曲线</B></button>
-    </section>
-    <section class="et-slide" id="tab-flexbox">
-      <h1>热学</h1>
-      <h3>Thermotics</h3>
-    </section>
-    <section class="et-slide" id="tab-react">
-      <h1>光学</h1>
-      <h3>Optics</h3>
-    </section>
-    <section class="et-slide" id="tab-angular">
-      <h1>电磁学</h1>
-      <h3>Electromagnetics</h3>
-    </section>
-    <section class="et-slide" id="tab-other">
-      <h1>其他</h1>
-      <h3>something about other</h3>
-    </section>
-  </main>
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="{% static 'js/index.js' %}"></script>
-{% endblock %}
+<body onload="getplace()">
+  
+  <header class="main_h">
+  
+      <div class="row">
+          <a class="logo" href="#">光</a>
+  
+          <div class="mobile-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+  
+          <nav>
+              <ul>
+                  <li><a id="sec1">实验介绍</a></li>
+                  <li><a id="sec2">实验原理</a></li>
+                  <li><a id="sec3">实验讲解</a></li>
+                  <li><a id="sec4">仿真实验</a></li>
+              </ul>
+          </nav>
+  
+      </div> <!-- / row -->
+  
+  </header>
+  
+  <div class="hero">
+  
+      <h1><span>宁波大学物理科学与技术学院</span><br>杨氏双缝干涉仿真实验</h1>
+  
+      <div class="mouse">
+          <span></span>
+      </div>
+  
+  </div>
+  
+  <div class="row content">
+      <h1 id="sec01">实验介绍</h1>
+      <p>在量子力学里，双缝实验，或称双狭缝实验（英语：Double-slit experiment）是一种展示光子或电子等微观物体的波动性与粒子性的实验。双缝实验是一种“双路径实验”。在双路径实验里，微观物体可以同时通过两条路径或通过其中任意一条路径，从初始点抵达最终点。这两条路径的程差促使描述微观物体物理行为的量子态发生相移，因此产生干涉现象。另一种常见的双路径实验是马赫-曾德尔干涉仪实验。</p>
+      <p>双缝实验的基本仪器设置很简单，如图所示，将像激光一类的相干光束照射到一块刻有两条狭缝的不透明板，通过狭缝的光束会抵达照相胶片或某种探测屏，从记录于照相胶片或某种探测屏的辐照度数据，可以分析光的物理性质。光的波动性使得通过两条狭缝的光束互相干涉，形成了显示于探测屏的明亮条纹和暗淡条纹相间的图样，明亮条纹是相长干涉区域，暗淡条纹是相消干涉区域，这就是双缝实验著名的干涉图样。</p>
+      <img src="{% static "img/Double-slit.svg.png" %}" width="900" height="450" />
+      <p>在古典力学里，双缝实验又称为“杨氏双缝实验”，或“杨氏实验”、“杨氏双狭缝干涉实验”，专门演示光波的干涉行为，是因物理学者托马斯·杨而命名。假若光束是以粒子的形式从光源移动至探测屏，抵达探测屏任意位置的粒子数目，应该等于之前通过左狭缝的粒子数量与之前通过右狭缝的粒子数量的总和。根据定域性原理（principle of locality），关闭左狭缝不应该影响粒子通过右狭缝的行为，反之亦然，[2]:7因此，在探测屏的任意位置，两条狭缝都不关闭的辐照度应该等于只关闭左狭缝后的辐照度与只关闭右狭缝后的辐照度的总和。但是，当两条狭缝都不关闭时，结果并不是这样，探测屏的某些区域会比较明亮，某些区域会比较暗淡，这种图样只能用光波动说的相长干涉和相消干涉来解释，而不是用光微粒说的简单数量相加法。</p>
+      <p>双缝实验也可以用来检试像中子、原子等微观物体的物理行为，虽然使用的仪器不同，但仍旧会得到类似的结果。每一个单独微观物体都离散地撞击到探测屏，撞击位置无法被预测，演示出整个过程的机率性，累积很多撞击事件后，总体又显示出干涉图样，演示微观物体的波动性。</p>
+      <p>2013年，一个检试分子物理行为的双缝实验成功演示出含有810个原子、质量约为10,000amu的分子也具有波动性。</p>
+      <p>理查德·费曼在著作《费曼物理学讲义》里表示，双缝实验所展示出的量子现象不可能、绝对不可能以任何古典方式来解释，它包含了量子力学的核心思想。事实上，它包含了量子力学唯一的奥秘[1]:39。透过双缝实验，可以观察到量子世界的奥秘。</p>
+      <h1 id="sec02">实验原理</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, recusandae, at, labore velit eligendi amet nobis repellat natus sequi sint consectetur excepturi doloribus vero provident consequuntur accusamus quisquam nesciunt cupiditate soluta alias illo et deleniti voluptates facilis repudiandae similique dolore quaerat architecto perspiciatis officiis dolor ullam expedita suscipit neque minima rem praesentium inventore ab officia quos dignissimos esse quam placeat iste porro eius! Minus, aspernatur nesciunt consectetur. Sit, eius, itaque, porro, beatae impedit officia tenetur reiciendis autem vitae a quae ipsam repudiandae odio dolorum quaerat asperiores possimus corporis optio animi quisquam laboriosam nihil quam voluptatum quidem veritatis iste culpa iure modi perspiciatis recusandae ipsa libero officiis aliquam doloremque similique id quasi atque distinctio enim sapiente ratione in quia eum perferendis earum blanditiis. Nobis, architecto, veniam molestias minus iste necessitatibus est ab in earum ratione eveniet soluta molestiae sed illo nostrum nemo debitis. Minus, quod totam aliquam ea asperiores fugit quaerat excepturi dolores ratione numquam consequatur id unde alias provident vero incidunt exercitationem similique consequuntur hic possimus? Fuga, eveniet quaerat inventore corporis laborum eligendi enim soluta obcaecati aliquid veritatis provident amet laudantium est quisquam dolore exercitationem modi? Distinctio, pariatur, ab velit praesentium vitae quidem consequatur deleniti recusandae odit officiis. Quidem, cupiditate.</p>
+      <h1 id="sec03">实验讲解</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, recusandae, at, labore velit eligendi amet nobis repellat natus sequi sint consectetur excepturi doloribus vero provident consequuntur accusamus quisquam nesciunt cupiditate soluta alias illo et deleniti voluptates facilis repudiandae similique dolore quaerat architecto perspiciatis officiis dolor ullam expedita suscipit neque minima rem praesentium inventore ab officia quos dignissimos esse quam placeat iste porro eius! Minus, aspernatur nesciunt consectetur. Sit, eius, itaque, porro, beatae impedit officia tenetur reiciendis autem vitae a quae ipsam repudiandae odio dolorum quaerat asperiores possimus corporis optio animi quisquam laboriosam nihil quam voluptatum quidem veritatis iste culpa iure modi perspiciatis recusandae ipsa libero officiis aliquam doloremque similique id quasi atque distinctio enim sapiente ratione in quia eum perferendis earum blanditiis. Nobis, architecto, veniam molestias minus iste necessitatibus est ab in earum ratione eveniet soluta molestiae sed illo nostrum nemo debitis. Minus, quod totam aliquam ea asperiores fugit quaerat excepturi dolores ratione numquam consequatur id unde alias provident vero incidunt exercitationem similique consequuntur hic possimus? Fuga, eveniet quaerat inventore corporis laborum eligendi enim soluta obcaecati aliquid veritatis provident amet laudantium est quisquam dolore exercitationem modi? Distinctio, pariatur, ab velit praesentium vitae quidem consequatur deleniti recusandae odit officiis. Quidem, cupiditate.</p>
+      <h1 id="sec04">仿真实验</h1>
+      <div id="slider" class="slider">
+        <div id = "thumb" class="thumb" style="display:inline;float:left;"></div>
+        <div id = "thumb2" class="thumb2" style="display:inline;float:left;"></div>
+        <div id = "thumb5" class="thumb5" style="display:inline;float:left;"></div>
+        <script type="text/javascript" src="{% static "js/silder.js" %}"></script>
+      </div>
+      <div id = "place"></div>
+      <div id="slider2" class="slider2">
+        <div id = "thumb3" class="thumb3" style="display:inline;float:left;"></div>
+        <script type="text/javascript" src="{% static "js/slidert2.js" %}"></script>
+      </div>
+      <div id = "place2"></div>
+      <div id="slider3" class="slider3">
+        <div id = "thumb4" class="thumb4" style="display:inline;float:left;"></div>
+        <script type="text/javascript" src="{% static "js/slidert3.js" %}"></script>
+      </div>
+      <div id = "place3"></div>
+      <button class="custom-btn btn-16" onclick="democlick()">开始仿真</button>
+      <button class="custom-btn btn-16" onclick="resetclick()">重置</button>
+      <div id="main" style="width: 900px;height:600px;"></div>
+  </div>
+  
+</body>
